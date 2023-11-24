@@ -4,4 +4,6 @@ module chronometer {
 
     opens chronometer to javafx.fxml;
     exports chronometer;
+    exports chronometer.Controllers;
+    opens chronometer.Controllers to javafx.fxml;
 }
