@@ -25,13 +25,13 @@ public class TimerController {
     private Thread timerThread;
     private boolean isRunning = false;
 
-    private int horas, minutos, segundos;
+    private int  segundos;
+
+    private int horas;
+
+    private int minutos;
 
     private MediaPlayer mediaPlayer;
-
-
-
-
 
     @FXML
     private void initialize() {
@@ -176,13 +176,22 @@ public class TimerController {
         int segundosDisplay = segundos;
 
         if (segundosDisplay == 60) {
+            minutos++;
             minutosDisplay++;
             segundosDisplay = 0;
+            segundos = 0;
         }
 
         if (minutosDisplay == 60) {
+            horas++;
             horasDisplay++;
             minutosDisplay = 0;
+            minutos = 0;
+        }
+
+        if (horasDisplay == 24) {
+            horasDisplay = 0;
+            horas = 0;
         }
 
         timerLabel.setText(String.format("%02d:%02d:%02d", horasDisplay, minutosDisplay, segundosDisplay));
