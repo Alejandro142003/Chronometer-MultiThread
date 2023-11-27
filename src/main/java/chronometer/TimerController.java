@@ -53,7 +53,11 @@ public class TimerController {
     }
 
     /**
-     *
+     * Inicia el temporizador.
+     * Reproduce un sonido al iniciar.
+     * Si el temporizador no está en ejecución, crea un nuevo hilo que incrementa los segundos cada segundo
+     * y actualiza la interfaz gráfica con el tiempo transcurrido.
+     * Cambia el estado de los botones y la imagen de estado según el estado del temporizador.
      */
     @FXML
     private void startTimer() {
@@ -78,7 +82,7 @@ public class TimerController {
             timerThread.setDaemon(true);
             timerThread.start();
 
-            startButton.setText("CONTANDO");
+            //startButton.setText("CONTANDO");
             startButton.setDisable(true);
             stopButton.setDisable(false);
 
@@ -94,15 +98,19 @@ public class TimerController {
     }
 
     /**
-     *
+     * Detiene o reanuda el temporizador.
+     * Reproduce un sonido al realizar la acción.
+     * Si el temporizador está en ejecución, lo detiene y actualiza la interfaz gráfica.
+     * Si el temporizador está detenido, lo reanuda y continua contando los segundos.
+     * Configura los botones y la imagen de estado según el estado del temporizador.
      */
     @FXML
     private void stopTimer() {
         reproducirSonido();
         if (isRunning) {
             isRunning = false;
-            startButton.setText("DETENIDO");
-            stopButton.setText("REANUDAR");
+            //startButton.setText("DETENIDO");
+            //stopButton.setText("REANUDAR");
 
             URL imageUrl = getClass().getResource("/chronometer/images/rojo.png");
             if (imageUrl != null) {
@@ -131,8 +139,8 @@ public class TimerController {
             timerThread.setDaemon(true);
             timerThread.start();
 
-            startButton.setText("CONTANDO");
-            stopButton.setText("DETENER");
+            //startButton.setText("CONTANDO");
+            //stopButton.setText("DETENER");
 
             // Cambiar la imagen a verde
             URL imageUrl = getClass().getResource("/chronometer/images/verde.png");
@@ -146,13 +154,19 @@ public class TimerController {
     }
 
     /**
-     *
+     * Reinicia el temporizador.
+     * Reproduce un sonido al reiniciar.
+     * Detiene el temporizador si está en ejecución.
+     * Habilita el botón de inicio y deshabilita el botón de detención.
+     * Restablece las horas, minutos y segundos a cero.
+     * Actualiza la interfaz gráfica con el tiempo reiniciado.
+     * Carga y establece la imagen de estado a rojo.
      */
     @FXML
     private void resetTimer() {
         reproducirSonido();
         isRunning = false;
-        startButton.setText("INICIAR");
+        //startButton.setText("INICIAR");
         startButton.setDisable(false);
         stopButton.setDisable(true);
 
@@ -168,7 +182,12 @@ public class TimerController {
     }
 
     /**
-     *
+     * Reinicia el temporizador.
+     * Reproduce un sonido al reiniciar.
+     * Detiene el temporizador si está en ejecución.
+     * Configura los botones y la imagen de estado al estado inicial.
+     * Restablece las horas, minutos y segundos del temporizador a cero.
+     * Actualiza la interfaz gráfica con el tiempo reiniciado.
      */
     private void actualizarTiempo() {
         int horasDisplay = horas;
@@ -197,6 +216,11 @@ public class TimerController {
         timerLabel.setText(String.format("%02d:%02d:%02d", horasDisplay, minutosDisplay, segundosDisplay));
     }
 
+    /**
+     * Reproduce un sonido al realizar ciertas acciones en el temporizador.
+     * Utiliza un archivo de sonido predefinido ("click.mp3").
+     * Crea una nueva instancia de MediaPlayer y reproduce el sonido.
+     */
     private void reproducirSonido() {
         String soundFile = "/chronometer/sound/click.mp3";
         Media sound = new Media(getClass().getResource(soundFile).toString());
