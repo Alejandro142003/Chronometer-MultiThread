@@ -154,7 +154,13 @@ public class TimerController {
     }
 
     /**
-     *
+     * Reinicia el temporizador.
+     * Reproduce un sonido al reiniciar.
+     * Detiene el temporizador si está en ejecución.
+     * Habilita el botón de inicio y deshabilita el botón de detención.
+     * Restablece las horas, minutos y segundos a cero.
+     * Actualiza la interfaz gráfica con el tiempo reiniciado.
+     * Carga y establece la imagen de estado a rojo.
      */
     @FXML
     private void resetTimer() {
